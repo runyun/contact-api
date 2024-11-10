@@ -1,5 +1,13 @@
-
+localhost link
 GET http://localhost:3000/base
 
 ###
 GET http://localhost:3000/base/getContactById?id=672f685120dac8e7fce50e1b
+
+
+# published link
+###
+GET https://cse341-contact-api.onrender.com/base
+
+###
+GET https://cse341-contact-api.onrender.com/base/getContactById?id=672f685120dac8e7fce50e1b
