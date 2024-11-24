@@ -1,13 +1,82 @@
-#localhost link
+
+# ===============================LOCALHOST LINK===============================
+# Search
+###
 GET http://localhost:3000/base
 
 ###
 GET http://localhost:3000/base/getContactById?id=672f685120dac8e7fce50e1b
 
+# Create
+###
+POST http://localhost:3000/base/create
+Content-Type: application/json
 
-# published link
+{
+    "birthday": "1999-01-01",
+    "email": "hi@test.com",
+    "favoriteColor": "pink",
+    "firstName": "Wu",
+    "lastName": "Hao"
+}
+
+# Updaet
+###
+PUT http://localhost:3000/base/update/1
+Content-Type: application/json
+
+{
+    "birthday": "2020-12-12",
+    "email": "yo123456@test.com"
+}
+
+# Delete
+###
+DELETE http://localhost:3000/base/delete/672f681920dac8e7fce50e1a
+Content-Type: application/json
+
+
+
+
+
+
+
+
+
+
+# ===============================PUBLISHED LINK===============================
+
+# Search
 ###
 GET https://cse341-contact-api.onrender.com/base
 
 ###
 GET https://cse341-contact-api.onrender.com/base/getContactById?id=672f685120dac8e7fce50e1b
+
+# Create
+###
+POST https://cse341-contact-api.onrender.com/base/create
+Content-Type: application/json
+
+{
+    "birthday": "1999-01-01",
+    "email": "hi@test.com",
+    "favoriteColor": "pink",
+    "firstName": "Wu",
+    "lastName": "Hao"
+}
+
+# Updaet
+###
+PUT https://cse341-contact-api.onrender.com/base/update/1
+Content-Type: application/json
+
+{
+    "birthday": "2020-12-12",
+    "email": "yo123456@test.com"
+}
+
+# Delete
+###
+DELETE https://cse341-contact-api.onrender.com/base/delete/672f681920dac8e7fce50e1a
+Content-Type: application/json
