@@ -30,8 +30,9 @@ baseController.addContact = async function(req, res){
 
 baseController.updateContact = async function(req, res){
     try {
-        const data = req.body;
-        const result = await baseModel.updateContact(data);
+        const id = req.params.id;
+        const {birthday, email, favoriteColor, firstName, lastName,} = req.body;
+        const result = await baseModel.updateContact(id, req.body);
 
         res.status(200).send(result);
         

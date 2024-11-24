@@ -28,6 +28,7 @@ baseModel.getContactById = async function (id) {
 }
 
 baseModel.insertContact = async function(data){
+    const contacts = await connectContactsCollection();
     const newContact = new contact({
         birthday: data.birthday,
         email: data.email,
@@ -35,36 +36,44 @@ baseModel.insertContact = async function(data){
         firstName: data.firstName,
         lastName: data.lastName
     });
+    const savedContact = await contacts.insertOne(newContact);
 
-    const savedContact = await newContact.save();
-
-    return savedContact.id;
+    return savedContact.insertedId;
 }
 
-baseModel.updateContact = async function(data){
-    const filter = {id: new ObjectId(data.id)};
-    // const contacts = await connectContactsCollection();
-    const updateData = {
-        $set: {
-            birthday: data.birthday,
-            email: data.email,
-            favoriteColor: data.favoriteColor,
-            firstName: data.firstName,
-            lastName: data.lastName
+baseModel.updateContact = async function(id, data){
+    try {
+        const contacts = await connectContactsCollection();
+        const filter = {_id: new ObjectId(id)};
+        const updateData = {
+            $set: {
+                birthday: data.birthday,
+                email: data.email,
+                favoriteColor: data.favoriteColor,
+                firstName: data.firstName,
+                lastName: data.lastName
+            }
         }
+
+        const result = await contacts.updateOne(filter, updateData);
+
+        if (result.matchedCount === 0) {
+            console.log('No data been updated.');
+
+        } else {
+            console.log('Updated successfully:', result.modifiedCount);
+        }
+    } catch (error) {
+        console.error('update data failed - ', error); 
     }
-
-    const updateContact = await contact.updateOne(filter, updateData);
-
-    return updateContact;
 }
 
 
 baseModel.deleteContactById = async function(id){
-    // const contacts = await connectContactsCollection();
-    const result = await contact.findByIdAndDelete(id);
+    const contacts = await connectContactsCollection();
+    const filter = {_id: new ObjectId(id)};
+    const result = await contacts.deleteOne(filter);
 
-    // const result = await contacts.deleteOne({id: new ObjectId(id)});
     return result;
 }
 
