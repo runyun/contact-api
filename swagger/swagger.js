@@ -6,7 +6,7 @@ const doc = {
         description: ''
     },
     // host: 'localhost:3000',
-    host: 'https://cse341-contact-api.onrender.com',
+    host: 'cse341-contact-api.onrender.com',
     schema: ['http', 'https']
 };
 
